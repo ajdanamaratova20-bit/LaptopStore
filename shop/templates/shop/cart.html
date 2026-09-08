@@ -1,0 +1,48 @@
+{% extends "shop/base.html" %}
+{% block title %}Корзина{% endblock %}
+{% block content %}
+    <h1 class="mb-4"><i class="b1 bi-bag me-2"></i>Корзина</h1>
+    {% if cart %}
+        <div class="shop-table mb-4">
+            <table class="table mb-0">
+                <thead>
+                    <tr>
+                        <th>Товар</th>
+                        <th>Кол-во</th>
+                        <th>Цена</th>
+                        <th>Итого</th>
+                        <th></th>
+                    </tr>
+                </thead>
+                <tbody>
+                {% for item in cart %}
+                    <tr>
+                        <td>{{ item.laptop.brand }} {{ item.laptop.model_name }}</td>
+                        <td>{{ item.quantity }}</td>
+                        <td>${{ item.price }}</td>
+                        <td class="fw-bold">${{ item.total_price }}</td>
+                        <td class="text-end"><a href="{% url 'cart_remove' item.laptop.id %}" class="btn btn-outline-danger btn-sm"><i class="bi bi-trash"></i></a></td>
+                    </tr>
+                {% endfor %}
+                </tbody>
+            </table>
+        </div>
+        <div class="row justify-cintent-end">
+            <div class="col-md-4">
+                <div class="summary-box">
+                    <div class="d-flax justity-content-between align-items-center mb-3">
+                        <span class="text-muted">Итого</span>
+                        <span class="total">${{ cart.get_total_price }}</span>
+                    </div>
+                    <a href="{% url 'checkout' %}" class="btn btn-success w-100">Оформить заказ</a>
+                </div>
+            </div>
+        </div>
+    {% else %}
+        <div class="empty-state">
+            <i class="bi bi-bag-x"></i>
+            <p>Корзина пуста.</p>
+        </div>
+    {% endif %}
+    <a href="{% url 'laptop_list' %}" class="d-inline-block mt-4"><i class="bi bi-arrow-left me-1"></i>Продолжить покупки</a>
+{% endblock %}

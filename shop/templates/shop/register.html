@@ -1,0 +1,15 @@
+{% extends "shop/base.html" %}
+{% block title %}Регистрация{% endblock %}
+{% block content %}
+<div class="auth-wrap">
+    <div class="auth-card">
+        <h2>Регистрация</h2>
+        <form method="post">
+            {% csrf_token %}
+            {{ form.as_p }}
+            <button type="submit" class="btn btn-primary w-100">Зарегистритоваться</button>
+        </form>
+        <p class="text-center mt-3 mb-0">Уже есть аккаунт? <a href="{% url 'login' %}">Войти</a></p>
+    </div>
+</div>
+{% endblock %}

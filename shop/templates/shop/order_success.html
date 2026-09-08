@@ -1,0 +1,10 @@
+{% extends "shop/base.html" %}
+{% block title %}Заказ оформлен{% endblock %}
+{% block content %}
+    <div class="empty-state">
+        <i class="bi bi-chek-circle text-success"></i>
+        <h1 class="h3 md-2">Спасибо за заказ!</h1>
+        <p>Ваш заказ успешно оформлен. Мы свяжемся с вами в ближайшее время.</p>
+        <a href="{% url 'laptop_list' %}" class="btn btn-primary mt-2">Продолжить пакупки</a>
+    </div>
+{% endblock %}

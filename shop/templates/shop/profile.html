@@ -1,0 +1,20 @@
+{% extends  "shop/base.html" %}
+{% block title %}Профиль{% endblock %}
+{% block content %}
+    <div class="profile-card">
+        <div class="auth-card">
+            <h2>Профиль {{ user.username }}</h2>
+            {% if user.profile.avatar %}
+                <div class="text-center mb-3">
+                    <img src="{{ user.profile.avatar.url }}" class="avatar-preview">
+                </div>
+            {% endif %}
+            <form method="post" enctype="multipart/form-data">
+                {% csrf_token %}
+                {{ form.as_p }}
+                <button type="submit" class="btn_primary w-100">Сохранить</button>
+            </form>
+        </div>
+        <p class="text-center mt-3"><a href="{% url 'laptop_list' %}"><i class="bi bi-arrow-left me-1"></i>На главную</a></p>
+    </div>
+{% endblock %}
